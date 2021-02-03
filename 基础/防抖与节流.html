@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            height: 10000px;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        /**
+         * 防抖与节流
+         * 防抖：触发事件结束时只执行一次，每触发一次时间都重新计算，延迟执行
+         * 节流：只允许函数在N秒内执行一次，即每隔一段时间触发一次
+         * 使用场景：input、resize、scroll、button等
+         */
+
+
+         // 防抖
+         function debounce(fn, delay){
+            let timer = null; // 初始化定时器
+            // 使用闭包实现
+            return function(){
+                let context = this; // 指向全局
+                let args = arguments;
+                if (timer) {
+                    clearTimeout(timer);
+                }
+                // timer = setTimeout(fn, delay);
+                timer = setTimeout(()=>{
+                    fn.apply(context, args)
+                }, delay)
+            }
+         }
+         //使用
+         function showScrollTop(){
+             let scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+             console.log(scrollTop);
+         }
+         window.onscroll = debounce(showScrollTop, 1000);
+
+        // 节流
+
+        function throttle(fn, delay){
+            let lastTime = 0;
+            return function(){
+                let currentTime = Date.now();
+                if (currentTime - lastTime > delay) {
+                    fn.apply(this, arguments);
+                    lastTime = currentTime;
+                }
+            }
+        }
+        function throttleScrollTop(){
+            let scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+            console.log(scrollTop)
+        }
+        window.onscroll = throttle(throttleScrollTop, 1000);
+    </script>
+    
+</body>
+</html>
