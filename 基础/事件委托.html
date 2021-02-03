@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="color-list">
+        <li>red</li>
+        <li>yellow</li>
+        <li>blue</li>
+        <li>green</li>
+        <li>black</li>
+        <li>white</li>
+    </ul>
+    <script>
+        /* 事件委托 */
+        // 1. 原始做法
+        /* (function (){
+            let color_list = document.querySelectorAll('li');
+            for (const item of color_list) {
+                item.onclick = colorText;
+            }
+            function colorText(e){
+                console.log(e.target.innerHTML)
+            }
+        })() */
+
+
+        /* (function(){
+            let evet = document.querySelectorAll('li')
+            console.log('all is:', evet)
+            for (let item of evet) {
+                item.onclick = showColor;
+                
+            }
+            function showColor(e){
+               
+                console.log('target is:', e.target.innerHTML)
+            }
+        })() */
+        
+        // 2.使用事件委托
+        (function(){
+            let color_list = document.getElementById('color-list')
+            color_list.addEventListener('click', showColor, true)
+            function showColor(e){
+                let x = e.target;
+                if (x.nodeName.toLowerCase() === 'li') {
+                    console.log(x.innerHTML)
+                }
+            }
+        })()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      /*   (function(){
+            let color_list = document.getElementById('color-list');
+            color_list.addEventListener('click', showColors, true);
+            function showColors(e){
+                let x = e.target;
+                if(x.nodeName.toLowerCase() === 'li'){
+                    console.log('target is:', x.innerHTML)
+                }
+            }
+        })() */
+    </script>
+</body>
+</html>
