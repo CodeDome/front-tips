@@ -17,7 +17,7 @@
     <script>
         /* 事件委托 */
         // 1. 原始做法
-        /* (function (){
+        (function (){
             let color_list = document.querySelectorAll('li');
             for (const item of color_list) {
                 item.onclick = colorText;
@@ -25,7 +25,7 @@
             function colorText(e){
                 console.log(e.target.innerHTML)
             }
-        })() */
+        })()
 
 
         /* (function(){
@@ -52,19 +52,6 @@
                 }
             }
         })()
-
-
-
-
-
-
-
-
-
-
-
-
-
 
       /*   (function(){
             let color_list = document.getElementById('color-list');
