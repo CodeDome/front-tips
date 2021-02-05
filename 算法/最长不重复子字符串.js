@@ -6,7 +6,6 @@ let s = 'abcabcdef'
 function findLongSubstring(str){
     let arr = [];
     let max = 0;
-    let res = []
     for (let i = 0; i < str.length; i++) {
         let index = arr.indexOf(str[i]);
         if (index !== -1) {
